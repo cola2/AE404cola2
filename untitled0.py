@@ -1,40 +1,60 @@
-import requests
-from bs4 import BeautifulSoup
+import time
+from selenium import webdriver
+
+chrome = webdriver.Chrome()
+chrome.get('https://www.google.com')
+inputBar = chrome.find_element_by_class_name('gLFyf.gsfi')
+inputBar.send_keys('猿創力')
+time.sleep(1)
+
+button = chrome.find_element_by_class_name('gNO89b')
+button.click()
+time.sleep(1)
+
+button = chrome.find_element_by_class_name('LC20lb.DKV0Md')
+button.click()
+time.sleep(1)
+
+chrome.maxsize_window()
+chrome.get_screenshot_as_file('123.png')
 
 
 
 
-postData = {'_csrf': 'b48de1d4-8f7b-4777-847a-29017f2d153a',
-'startStation': '1000-臺北',
-'endStation': '4400-高雄',
-'transfer': 'ONE',
-'rideDate': '2021/04/24',
-'startOrEndTime': 'true',
-'startTime': '07:00',
-'endTime': '08:00',
-'trainTypeList': 'ALL',
-'_isQryEarlyBirdTrn': 'on',
-'query': '查詢'}
 
-respond = requests.post('https://www.railway.gov.tw/tra-tip-web/tip/tip001/tip112/querybytime', data = postData)
-soup = BeautifulSoup(respond.text, 'html.parser')
 
-data = soup.find_all('tr', class_ = 'trip-column')
 
-for info in data:
-    
-    location = info.find_all('span', class_='location')
-    location1 = location[0].text
-    location2 = location[1].text
-    
-    time = info.find_all('td')
-    time1 = time[1].text
-    time2 = time[2].text
-    time3 = time[3].text
-    time4 = time[4].text
-    
-    print(location1, '--->', location2, time1, time2, time3, time4)
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
